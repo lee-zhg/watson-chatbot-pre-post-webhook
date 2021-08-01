@@ -1,0 +1,73 @@
+{
+
+  "payload":
+
+{
+    "context": {
+      "global": {
+        "system": {
+          "timezone": "America/Chicago",
+          "user_id": "anonymous_IBMuid-9a3e8f8c-604a-4efb-a10a-57434afbbfcc"
+        }
+      },
+      "integrations": {
+        "chat": {
+          "browser_info": {
+            "browser_OS": "Mac OS",
+            "browser_name": "firefox",
+            "browser_version": "90.0.0",
+            "client_ip_address": "99.139.151.21",
+            "ip_address_list": [
+              "99.139.151.21",
+              " 23.64.118.75",
+              "10.187.13.4",
+              " 172.30.221.172"
+            ],
+            "language": "en-US",
+            "page_url": "https://us-south.assistant.watson.cloud.ibm.com/crn:v1:bluemix:public:conversation:us-south:a%2F2c4285791ff:baa35949-1fd9-40ce-81b4-e3d8ed76f934::/assistants/3da1207c-92d9-43bd-ac42-dd75349c04af",
+            "screen_resolution": "width: 2128, height: 1330",
+            "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:90.0) Gecko/20100101 Firefox/90.0"
+          },
+          "private": {
+            "ip_address": "172.30.157.76",
+            "request_id": "0bf6a164-a3e5-493b-9f0d-29d7546a7ff9"
+          }
+        }
+      },
+      "skills": {
+        "main skill": {
+          "system": {
+            "state": "eyJzZXNzaW9uX2lkIjoiOTVkzdF9icmFuY2hfbm9kZSI6IldlbGNvbWUifQ=="
+          },
+          "user_defined": {
+            "customer_sip_number": "",
+            "incoming_sip": "",
+            "nr_operation": "hello",
+            "vgwTransferFailedMessage": "Initiated Call Transfer."
+          }
+        }
+      }
+    },
+    "input": {
+      "message_type": "text",
+      "options": {
+        "alternate_responses": false,
+        "debug": true,
+        "disambiguation": {
+          "alternate_responses": false
+        },
+        "export": true,
+        "return_context": true,
+        "suggestion_only": false
+      },
+      "source": {
+        "id": "anonymous_IBMuid-9a3e8f8c-604a-4efb-a10a-bfcc",
+        "type": "user"
+      },
+      "text": "Buenos días"
+    }
+  }
+
+
+
+}

@@ -1,0 +1,9 @@
+node_modules
+package-lock.json
+.env
+mochawesome-report/assets
+mochawesome-report/*.json
+mochawesome-report/*.html
+mochawesome-report/Staticfile.auth
+mocha-*
+.DS_Store

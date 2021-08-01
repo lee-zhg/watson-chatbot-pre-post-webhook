@@ -1,0 +1,102 @@
+{
+"payload":
+{
+    "context": {
+      "global": {
+        "session_id": "7bc825c9-fbed-4897-9617-cc8ed0d846cc",
+        "system": {
+          "timezone": "America/Chicago",
+          "turn_count": 2,
+          "user_id": "anonymous_IBMuid-9a3e8f8c-604a-4efb-a10a-57434afbbfcc"
+        }
+      },
+      "integrations": {
+        "chat": {
+          "browser_info": {
+            "browser_OS": "Mac OS",
+            "browser_name": "firefox",
+            "browser_version": "90.0.0",
+            "client_ip_address": "99.139.151.21",
+            "ip_address_list": [
+              "99.139.151.21",
+              " 184.30.31.103",
+              "10.187.13.14",
+              " 172.30.209.141"
+            ],
+            "language": "en-US",
+            "page_url": "https://us-south.assistant.watson.cloud.ibm.com/crn%3Av1%3Abluemix%3Apublic%3Aconversation%3Aus-south%3Aa%2F2c426324cc934f71a2a053c9185791ff%3Abaa35949-1fd9-40ce-81b4-e3d8ed76f934%3A%3A/assistants/3da1207c-92d9-43bd-ac42-dd75349c04af",
+            "screen_resolution": "width: 2128, height: 1330",
+            "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:90.0) Gecko/20100101 Firefox/90.0"
+          },
+          "private": {
+            "ip_address": "172.30.134.146",
+            "request_id": "77670f6c-3636-4285-8752-d0fe7e831a5b"
+          }
+        }
+      },
+      "skills": {
+        "main skill": {
+          "system": {
+            "state": "eyJzZXNzaW9uX2lkIjoiN2JjODI1YzktZmJlZC00ODk3LTk2MTctY2M4ZWQwZDg0NmNjIiwic2tpbGxfcmVmZXJlbmNlIjoibWFpbiBza2lsbCIsImFzc2lzdGFudF9pZCI6IjNkYTEyMDdjLTkyZDktNDNiZC1hYzQyLWRkNzUzNDljMDRhZiIsImluaXRpYWxpemVkIjp0cnVlLCJkaWFsb2dfc3RhY2siOlt7ImRpYWxvZ19ub2RlIjoic2xvdF82XzE2MjYzODEzNjgyMDkiLCJzdGF0ZSI6ImluX3Byb2dyZXNzIn1dLCJfbm9kZV9vdXRwdXRfbWFwIjp7Im5vZGVfMV8xNjI2MzgxMjU2NzE0Ijp7IjAiOlswXX0sImhhbmRsZXJfMTBfMTYyNjM4MTM2ODI0MyI6eyIwIjpbMF19fSwibGFzdF9icmFuY2hfbm9kZSI6Im5vZGVfMV8xNjI2MzgxMjU2NzE0In0="
+          },
+          "user_defined": {
+            "customer_sip_number": "",
+            "incoming_sip": "",
+            "lang_id": "pt",
+            "language": "pt",
+            "nr_operation": "hello",
+            "original_input": "imprimir fotos",
+            "vgwTransferFailedMessage": "Initiated Call Transfer.",
+            "original_output": "I can help you price photos. "
+          }
+        }
+      }
+    },
+    "output": {
+      "debug": {
+        "log_messages": [],
+        "nodes_visited": [
+          {
+            "conditions": "#photos_cost",
+            "dialog_node": "node_1_1626381256714",
+            "title": "P.1 Photo Cost"
+          },
+          {
+            "conditions": "true",
+            "dialog_node": "node_8_1626193339121",
+            "title": "P.1.1 - Capture Desired Photo Specifications"
+          },
+          {
+            "conditions": null,
+            "dialog_node": "handler_10_1626381368243",
+            "title": null
+          },
+          {
+            "conditions": null,
+            "dialog_node": "slot_6_1626381368209",
+            "title": null
+          }
+        ]
+      },
+      "entities": [],
+      "generic": [
+        {
+          "response_type": "text",
+          "text": "Good morning"
+        },
+        {
+          "response_type": "text",
+          "text": "What size prints would you like? Choices include: 4 by 6 inch, 6 by 8 inch, 8 by 8 inch, and 8 by 10 inch."
+        }
+      ],
+      "intents": [
+        {
+          "confidence": 0.9493476390838624,
+          "intent": "photos_cost"
+        }
+      ]
+    },
+    "user_id": "anonymous_IBMuid-9a3e8f8c-604a-4efb-a10a-57434afbbfcc"
+  }
+}
+
