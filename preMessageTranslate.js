@@ -30,10 +30,10 @@
          const options = {
          method: "POST",
          url:
-             "https://api.us-south.language-translator.watson.cloud.ibm.com/instances/6c929b81-0590-424c-88b3-a1fa9b424da8/v3/identify?version=2018-05-01",
+             "https://api.us-south.language-translator.watson.cloud.ibm.com/instances/<instance>/v3/identify?version=2018-05-01",
          auth: {
              username: "apikey",
-             password: "e6ZwlpB2aOmIIWzz6-CoVN_jT0XVWj8ltsv9auk5GTDh",
+             password: "<api key>",
          },
          headers: {
              "Content-Type": "text/plain",
@@ -64,10 +64,10 @@
              const options = {
              method: "POST",
              url:
-                "https://api.us-south.language-translator.watson.cloud.ibm.com/instances/6c929b81-0590-424c-88b3-a1fa9b424da8/v3/identify?version=2018-05-01",
+                "https://api.us-south.language-translator.watson.cloud.ibm.com/instances/<instance>/v3/identify?version=2018-05-01",
              auth: {
                 username: "apikey",
-                password: "e6ZwlpB2aOmIIWzz6-CoVN_jT0XVWj8ltsv9auk5GTDh",
+                password: "api key",
              },
              body: {
                  text: [params.payload.input.text],
