@@ -11,8 +11,8 @@ async function translateData(source_lang_id, target_lang_id, to_translate) {
   
     try {
       const languageTranslator = new LanguageTranslatorV3({
-        authenticator: new IamAuthenticator({ apikey: 'e6ZwlpB2aOmIIWzz6-CoVN_jT0XVWj8ltsv9auk5GTDh' }),
-        serviceUrl: 'https://api.us-south.language-translator.watson.cloud.ibm.com/instances/6c929b81-0590-424c-88b3-a1fa9b424da8',
+        authenticator: new IamAuthenticator({ apikey: '<api key>' }),
+        serviceUrl: 'https://api.us-south.language-translator.watson.cloud.ibm.com/instances/<instance>',
         version: '2018-05-01',
       });
   
