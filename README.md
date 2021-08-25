@@ -18,11 +18,13 @@ Data flow:
 1. Translate it back to the user’s language based on context set in step 2
 1. Send response user.
 
+
 ## Steps
 
 Complete procedures in this section to add generic and portable multi-languages capability to a Watson Assistant chatbot by implementing the `Full Machine Translation` option.
 
 There are many ways to support multi-languages capability in Watson Assistant chatbot. Depending on your specific use cases, the options may perform differently. The `Full Machine Translation` method is a generic, portable option. Because it provides an universal catching-all multi-languages capability, other implementation options may offer a more accurate solution in certain specific use cases.
+
 
 ### Step 1 - Clone the Repository
 
@@ -54,6 +56,7 @@ The following tasks complete the Watson Assistant pre-webhook deployment and con
 - Deploy the above application as a microservice. In this repo, the service is deployed as a IBM Cloud Function in IBM Cloud.
 - Configure Watson Assistant pre-webhook to apply the language translation logic to the chatbot.
 
+
 #### Step 2.1 - Develop Source Code for Translation Logic
 
 Sample code `preMessageTranslate.js` offers a starting point. It locates in the root folder of this repo.
@@ -76,11 +79,13 @@ The payload is a JSON object. A sample payload can be found in file `./data/samp
 
 > Note: to debug in IBM Cloud Function, you likely need an instance of `IBM Log Analysis with LogDNA`.
 
+
 #### Step 2.2 - Deploy a Service as IBM Cloud Function
 
 It's easy and economical to deploy a microservice as a IBM Cloud Function. In this repo, the language translation microservice is deployed as a IBM Cloud Function.
 
 Alternatively, you may choose deploying the service to different platform such as Cloud Foundry, Kubernetes cluster, OpenShift cluster and etc.
+
 
 ##### Step 2.2.1 - Deploy Cloud Function
 
@@ -130,11 +135,69 @@ In this section, you deploy your code as a service in IBM Cloud Function. Becaus
    ibmcloud  fn  action  create  multi-language-pkg-<your initial>/preMessageTranslate  preMessageTranslate.js  --kind nodejs:12  --web  true  --web-secure  <YOURSECRET>
    ```
 
-   > Note: <YOURSECRET> can be any text string that helps to keep your cloud functions secure. Note down <YOURSECRET> for future reference.
+    > Note: <YOURSECRET> can be any text string that helps to keep your cloud functions secure. Note down <YOURSECRET> for future reference.
+
+1. Verify the action cloud function was created succerssfully.
+
+   ```
+   ibmcloud  fn  action  list  multi-language-pkg-<your initial>
+   ```
 
 Alternatively, you may also deploy the Cloud Function via IBM Cloud UI.
 
-##### Step 2.2.2 - Gather Cloud Function Information
+
+##### Step 2.2.2 - Modify Cloud Function
+
+The cloud function calls Watson Translator APIs. It has to authenticate and point to the correct Translator endpoint. For simplicity, the Watson Translator API key and URL is hardcoded in the Node.js source code.
+
+> Note: it's posssible to bind cloud function and Watson services without hardcode. But, it's not covered at the time of writing.
+
+1. Login to IBM Cloud
+
+1. Select the main `Navigation Menu` (often referred as Hamburge menu) at the top-left corner.
+
+1. Select the `Functions` and then `Actions`.
+
+   !["watson-assistant-multi-language-architecture"](docs/images/cloudfunction01.png)
+
+1. Select `preMessageTranslate` entry.
+
+1. The source code is displayed in the `Code` tab.
+
+1. Locate the following source code.
+
+    ```
+             url:
+                  "<Watson Translator URL>/v3/identify?version=2018-05-01",
+             auth: {
+                 username: "apikey",
+                 password: "<Watson Translator API key>",
+             },
+    ```
+
+1. Replace `<Watson Translator API key>` and `<Watson Translator URL>`.
+
+1. Both `<Watson Translator API key>` and `<Watson Translator URL>` can be found in the `Manage` tab of your `Watson Language Translator` instance window.
+
+   !["watson-assistant-multi-language-architecture"](docs/images/translator01.png)
+
+1. Locate the following source code.
+
+    ```
+                     url:
+                         "<Watson Translator URL>/v3/translate?version=2018-05-01",
+                     auth: {
+                         username: "apikey",
+                         password: "<Watson Translator API >",
+                     },
+    ```
+
+1. Replace `<Watson Translator API key>` and `<Watson Translator URL>`.
+
+1. `Save`.
+
+
+##### Step 2.2.3 - Gather Cloud Function Information
 
 When you configure the Pre-webhook for your Watson Assistant instance, you need couple of you cloud function information.
 
@@ -154,7 +217,7 @@ When you configure the Pre-webhook for your Watson Assistant instance, you need 
 
 1. Collect URL of `HTTP Method` under `Web Action`.
 
-1. Collect username and password when `non-IAM` authentication is used. This occurs for the `cloud foundry` name space.
+1. Collect username and password if the cloud function resides in a `cloud foundry` name space. `non-IAM` authentication is used in this case.
 
    a) Copy the CURL command at the bottom. It should look like
 
@@ -167,6 +230,7 @@ When you configure the Pre-webhook for your Watson Assistant instance, you need 
    > Note: `6e1bf-a76e-4bc2-9c24-8784af9:Vc1jv13mD6nJEIqouEFPwQjLkAnnJ6GzDvTBr3P2` is for illustration purpose. It's not valid credential.
 
    c) Take note of the credential.
+
 
 #### Step 2.3 - Configure Pre-Webhook of Watson Assistant Service
 
@@ -206,7 +270,7 @@ To configure the pre-webhook of Watson Assistant instance,
 
 1. Enable the pre-webhook.
 
-1. Enable `Return an error to the client if the webhook call fails` option. When the option is disabled, its label shows `Continue processing user input without webhook update if there is an error`.
+1. Select `Return an error to the client if the webhook call fails` under section `Synchronous event`.
 
    > Note: you should consider to turn on the option initially while you test the post-webhook. It can help you identify any post-webhook related problem. After the pre-webhook works stably, you may evaluate your use case and determine how the option should be set.
 
@@ -258,6 +322,7 @@ To configure the pre-webhook of Watson Assistant instance,
 
    > Note: this repo uses `Secret` for authentication. The step above is for reference only.
 
+
 ### Step 3 - Post-Webhook
 
 The following tasks complete the Watson Assistant post-webhook deployment and configuration.
@@ -265,6 +330,7 @@ The following tasks complete the Watson Assistant post-webhook deployment and co
 - Develop source code that holds the translation logic.
 - Deploy the above application as a microservice. Cloud Function in IBM Cloud is used for this repo.
 - Configure Watson Assistant post-webhook to apply the language translation logic to the chatbot.
+
 
 #### Step 3.1 - Develop Source Code for Translation Logic
 
@@ -288,11 +354,13 @@ The payload is a JSON object. A sample payload can be found in file `./data/samp
 
 > Note: to debug in IBM Cloud Function, you likely need an instance of `IBM Log Analysis with LogDNA`.
 
+
 #### Step 3.2 - Deploy a Service as IBM Cloud Function
 
 It's easy and economical to deploy a microservice as a IBM Cloud Fuction. In this repo, the language translation microservice is deployed to IBM Cloud Function.
 
 Alternatively, you may choose deploying the service to different platform such as Cloud Foundry, Kubernetes cluster, OpenShift cluster and etc.
+
 
 ##### Step 3.2.1 - Deploy Cloud Function
 
@@ -308,11 +376,20 @@ In this section, you deploy your code as a service in IBM Cloud Function. Becaus
 
    > Note: <YOURSECRET> is a text string that helps to keep your cloud functions secure. Notes down <YOURSECRET> for future reference.
 
+1. Verify the action cloud function was created succerssfully.
+
+   ```
+   ibmcloud  fn  action  list  multi-language-pkg-<your initial>
+   ```
+
 Alternatively, you may also deploy the Cloud Function via IBM Cloud UI.
 
-##### Step 3.2.2 - Gather Cloud Function Information
 
-When you configure the Post-webhook of Watson Assistant instance, you need couple of you cloud function information.
+##### Step 3.2.2 - Modify Cloud Function
+
+The cloud function calls Watson Translator APIs. It has to authenticate and point to the correct Translator endpoint. For simplicity, the Watson Translator API key and URL is hardcoded in the Node.js source code.
+
+> Note: it's posssible to bind cloud function and Watson services without hardcode. But, it's not covered at the time of writing.
 
 1. Login to IBM Cloud
 
@@ -323,6 +400,32 @@ When you configure the Post-webhook of Watson Assistant instance, you need coupl
    !["watson-assistant-multi-language-architecture"](docs/images/cloudfunction01.png)
 
 1. Select `postMessageTranslate` entry.
+
+1. The source code is displayed in the `Code` tab.
+
+1. Locate the following source code.
+
+    ```
+    try {
+      const languageTranslator = new LanguageTranslatorV3({
+        authenticator: new IamAuthenticator({ apikey: '<Watson Translator API key>' }),
+        serviceUrl: '<Watson Translator URL>',
+        version: '2018-05-01',
+    });
+    ```
+
+1. Replace `<Watson Translator API key>` and `<Watson Translator URL>`.
+
+1. Both `<Watson Translator API key>` and `<Watson Translator URL>` can be found in the `Manage` tab of your `Watson Language Translator` instance window.
+
+   !["watson-assistant-multi-language-architecture"](docs/images/translator01.png)
+
+1. `Save`.
+
+
+##### Step 3.2.3 - Gather Cloud Function Information
+
+When you configure the Post-webhook of Watson Assistant instance, you need couple of you cloud function information.
 
 1. Navigate to `Endpoints` in the left navigation pane.
 
@@ -343,6 +446,7 @@ When you configure the Post-webhook of Watson Assistant instance, you need coupl
    > Note: `6e1bf-a76e-4bc2-9c24-8784af9:Vc1jv13mD6nJEIqouEFPwQjLkAnnJ6GzDvTBr3P2` is for illustration purpose. It's not valid credential.
 
    c) Take note of the credential.
+
 
 #### Step 3.3 - Configure Post-Webhook of Watson Assistant Service
 
@@ -418,6 +522,7 @@ To configure the Post-webhook of Watson Assistant instance,
 
    e) `Save`. The user name and password are encoded before they are stored.
 
+
 ### Step 4 - Verification
 
 With all the deployments and configurations that you have completed, you added the multi-langages capability to your chatbot.
@@ -467,6 +572,7 @@ Develops once and works everywhere! Have you heard the phrase before? When Java 
 
 In fact, the multi-language capability introduced in the repo is another good example. But, `works everywhere` in this context means `works in any language`. You can develop your chatbot once, in English for example, and port to any supported language.
 
+
 #### Step 5.1 - Duplicate the Skill and Set the Language
 
 There are use cases that you may have developed chatbot in English and you like to quickly port to another language. You can certainly rebuild it for a different language. But, it takes time and resource.
@@ -507,6 +613,7 @@ The knowledge you have learned in this repo can can help you port an existing ch
 
 1. Tab out to save the change.
 
+
 #### Step 5.2 - Configure Assistant
 
 1. Navigate to `Assistant` tab.
@@ -520,6 +627,7 @@ The knowledge you have learned in this repo can can help you port an existing ch
 1. Select ``Create assistant` button.
 
 1. Configure the pre-webhook and post-webhook as you have done. The same source codes and cloud functions can be re-used.
+
 
 ### Step 5.3 - Chat in Chinese
 
@@ -547,6 +655,7 @@ To verify,
 
    > Note: This is a perfect translation for the current context. You may have to evaluate your specific use cases to determine if this easy and universal multi-languages solution offers a valid solution to your use cases.
 
+
 ### Step 5.4 - Quickly Port to Spanish
 
 Now, let's how easily and quickly you can switch to Spanish.
@@ -562,6 +671,7 @@ Now, let's how easily and quickly you can switch to Spanish.
    !["watson-assistant-multi-language-architecture"](docs/images/assistant15.png)
 
 1. Tab out to save the change.
+
 
 ### Step 5.5 - Chat in Spanish
 
