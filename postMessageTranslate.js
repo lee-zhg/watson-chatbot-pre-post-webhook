@@ -11,8 +11,8 @@ async function translateData(source_lang_id, target_lang_id, to_translate) {
   
     try {
       const languageTranslator = new LanguageTranslatorV3({
-        authenticator: new IamAuthenticator({ apikey: '<api key>' }),
-        serviceUrl: 'https://api.us-south.language-translator.watson.cloud.ibm.com/instances/<instance>',
+        authenticator: new IamAuthenticator({ apikey: 'ZFPoFVXT2HUIfUJ9Bj9bEHS7LMvE38cEItV-l0GzL_PU' }),
+        serviceUrl: 'https://api.us-south.language-translator.watson.cloud.ibm.com/instances/867da24b-f253-4d83-ac06-877607b3baad',
         version: '2018-05-01',
       });
   
@@ -55,6 +55,7 @@ async function main(params) {
   if (curr_lang == "" || curr_lang == "none" || curr_lang == null){
     curr_lang = lang_id;
     _.set(params, 'payload.context.skills["main skill"].user_defined.language', curr_lang);
+    console.log("curr_lang = ", curr_lang);
   } 
 
   if (curr_lang !== "en" && curr_lang !== "none") 
@@ -88,9 +89,25 @@ async function main(params) {
     console.log("After translation in POST webhook=================");
     console.log(JSON.stringify(params));
 
-    return { body: params };
+    //return { body: params };
+    
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
+      payload: params.payload
+    };
+    
 
   } else {
-    return { body: params };
+    console.log("NO translation in POST webhook=================");
+
+    //return { body: params };
+    
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
+      payload: params.payload
+    };
+    
   }
 }
