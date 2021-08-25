@@ -472,7 +472,7 @@ To configure the Post-webhook of Watson Assistant instance,
 
 1. Enable the post-webhook.
 
-1. Enable `Return an error to the client if the webhook call fails` option. When the option is disabled, its label shows `Continue processing user input without webhook update if there is an error`.
+1. Select `Return an error to the client if the webhook call fails` option under section `Synchronous event`. Alternative is `Continue processing user input without webhook update if there is an error`.
 
    > Note: you should consider to turn on the option initially while you test the post-webhook. It can help you identify any post-webhook related problem. After the post-webhook works stably, you may evaluate your use case and determine how the option should be set.
 
