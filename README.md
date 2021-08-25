@@ -537,8 +537,6 @@ To verify,
 
 1. Select `Preview` at the top-right corner.
 
-   !["watson-assistant-multi-language-architecture"](docs/images/assistant13.png)
-
 1. The chatbot displays the greeting in Chinese instead of English, although you did not modify its skill which was originally developed in English.
 
    > Note: The greeting text translation to Chinese is not the best translation for the current context. Since this is not a custom solution, you have to accept the imperfection.
