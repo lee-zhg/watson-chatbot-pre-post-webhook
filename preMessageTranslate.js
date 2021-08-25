@@ -34,7 +34,7 @@
                   "<Watson Translator URL>/v3/identify?version=2018-05-01",
              auth: {
                  username: "apikey",
-                 password: "Watson Translator API key",
+                 password: "<Watson Translator API key>",
              },
              headers: {
                  "Content-Type": "text/plain",
@@ -69,7 +69,7 @@
                          "<Watson Translator URL>/v3/translate?version=2018-05-01",
                      auth: {
                          username: "apikey",
-                         password: "Watson Translator API key",
+                         password: "<Watson Translator API >",
                      },
                      body: {
                          text: [params.payload.input.text],
