@@ -392,14 +392,9 @@
   },
   "webhooks": [
     {
-      "url": "https://us-south.functions.cloud.ibm.com/api/v1/namespaces/gscfsbmx%40us.ibm.com_CVS-IBM-Garage/actions/order?blocking=true",
+      "url": "",
       "name": "main_webhook",
-      "headers": [
-        {
-          "name": "Authorization",
-          "value": "Basic MDNiOGQyZGQtZDg5Mi00ZDc3LTg4MTctMTRkMTcwZDdlOGE1Okx0ejNjMGhXNDFtaWdocDVrS3hiRHJPWU5DaEpjMm12bEhkSE5nWHVDTUl0RmVORXNwNGVCRTNDa29PdVlNYkg="
-        }
-      ]
+      "headers": []
     }
   ],
   "dialog_nodes": [
@@ -454,110 +449,6 @@
     {
       "type": "event_handler",
       "output": {},
-      "parent": "slot_3_1626542499414",
-      "context": {
-        "photo_order_num_confirmed": "@yes_no && slot_in_focus"
-      },
-      "conditions": "@yes_no && slot_in_focus",
-      "event_name": "input",
-      "dialog_node": "handler_10_1626542499419"
-    },
-    {
-      "type": "event_handler",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "Ok, let's correct that. "
-              }
-            ],
-            "response_type": "text"
-          }
-        ]
-      },
-      "parent": "slot_3_1626542499414",
-      "context": {
-        "photo_order_number": null,
-        "photo_order_num_confirmed": null
-      },
-      "conditions": "@yes_no:no",
-      "event_name": "filled",
-      "dialog_node": "handler_1_1626542657216",
-      "previous_sibling": "handler_2_1626542499419"
-    },
-    {
-      "type": "event_handler",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "You can answer \"yes\", or \"no\"."
-              }
-            ],
-            "response_type": "text"
-          }
-        ]
-      },
-      "parent": "slot_3_1626542499414",
-      "conditions": "true",
-      "event_name": "nomatch",
-      "dialog_node": "handler_1_1626542728168",
-      "previous_sibling": "handler_3_1626542686441"
-    },
-    {
-      "type": "event_handler",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "Do you have an order number?"
-              },
-              {
-                "text": "Please provide your order number.  It's typically a letter, followed by four numbers. "
-              },
-              {
-                "text": "What is the photo order number?"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "slot_6_1626380078956",
-      "event_name": "focus",
-      "dialog_node": "handler_2_1626380078971",
-      "previous_sibling": "handler_9_1626380078971"
-    },
-    {
-      "type": "event_handler",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "<sentence>I heard order number <prosody rate=\"-20%\"> <say-as interpret-as=\"digits\">$photo_order_number</say-as></prosody></sentence><sentence>Is this correct?</sentence>"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "slot_3_1626542499414",
-      "context": {
-        "photo_order_number": "<? $photo_order_number.replaceAll(\"\\W\",\"\") ?>"
-      },
-      "event_name": "focus",
-      "dialog_node": "handler_2_1626542499419",
-      "previous_sibling": "handler_10_1626542499419"
-    },
-    {
-      "type": "event_handler",
-      "output": {},
       "parent": "slot_6_1626381368209",
       "context": {
         "photo_size": "@photo_size"
@@ -565,26 +456,6 @@
       "conditions": "@photo_size",
       "event_name": "input",
       "dialog_node": "handler_3_1626381368243"
-    },
-    {
-      "type": "event_handler",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "Great!  One moment while we lookup your order."
-              }
-            ],
-            "response_type": "text"
-          }
-        ]
-      },
-      "parent": "slot_3_1626542499414",
-      "conditions": "@yes_no:yes",
-      "event_name": "filled",
-      "dialog_node": "handler_3_1626542686441",
-      "previous_sibling": "handler_1_1626542657216"
     },
     {
       "type": "event_handler",
@@ -596,26 +467,6 @@
       "conditions": "@photo_paper",
       "event_name": "input",
       "dialog_node": "handler_7_1626381647298"
-    },
-    {
-      "type": "event_handler",
-      "output": {
-        "generic": [
-          {
-            "values": [],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "slot_6_1626380078956",
-      "next_step": {
-        "behavior": "skip_all_slots"
-      },
-      "conditions": "@yes_no:no",
-      "event_name": "nomatch",
-      "dialog_node": "handler_7_1626541632500",
-      "previous_sibling": "handler_2_1626380078971"
     },
     {
       "type": "event_handler",
@@ -638,17 +489,6 @@
       "previous_sibling": "handler_7_1626381647298"
     },
     {
-      "type": "event_handler",
-      "output": {},
-      "parent": "slot_6_1626380078956",
-      "context": {
-        "photo_order_number": "@photo_order_number.literal"
-      },
-      "conditions": "@photo_order_number.literal",
-      "event_name": "input",
-      "dialog_node": "handler_9_1626380078971"
-    },
-    {
       "type": "standard",
       "title": "Transfer vgw action",
       "output": {
@@ -669,23 +509,6 @@
       "conditions": "#representative",
       "dialog_node": "node_10_1626979167197",
       "previous_sibling": "node_3_1626543560596"
-    },
-    {
-      "type": "frame",
-      "title": "P2.1 Capture Order Number",
-      "parent": "node_5_1626379878536",
-      "metadata": {
-        "_customization": {
-          "mcr": true
-        }
-      },
-      "next_step": {
-        "behavior": "skip_user_input"
-      },
-      "conditions": "true",
-      "dialog_node": "node_1_1626379935108",
-      "previous_sibling": "response_9_1626888955079",
-      "disambiguation_opt_out": true
     },
     {
       "type": "standard",
@@ -716,23 +539,18 @@
     {
       "type": "standard",
       "title": "P2.1.1 Call webhook for desired photo price",
-      "output": {},
-      "parent": "node_8_1626193339121",
-      "actions": [
-        {
-          "name": "main_webhook",
-          "type": "webhook",
-          "parameters": {
-            "command": "checkprice",
-            "photoSize": "$photo_size",
-            "photoFinish": "$photo_finish"
-          },
-          "result_variable": "webhook_result_photoPrice"
+      "output": {
+        "text": {
+          "values": [
+            "Here let me check the price of those photos"
+          ],
+          "selection_policy": "multiple"
         }
-      ],
+      },
+      "parent": "node_8_1626193339121",
       "metadata": {
         "_customization": {
-          "mcr": true
+          "mcr": false
         }
       },
       "next_step": {
@@ -770,7 +588,7 @@
       },
       "conditions": "false",
       "dialog_node": "node_2_1626382060053",
-      "previous_sibling": "node_5_1626379878536",
+      "previous_sibling": "node_1_1626381256714",
       "disambiguation_opt_out": true
     },
     {
@@ -800,23 +618,6 @@
       "conditions": "#General_Ending",
       "dialog_node": "node_3_1626543560596",
       "previous_sibling": "node_2_1626382060053"
-    },
-    {
-      "type": "standard",
-      "title": "P.2 Photos Ready",
-      "metadata": {
-        "_customization": {
-          "mcr": true
-        }
-      },
-      "next_step": {
-        "behavior": "skip_user_input"
-      },
-      "conditions": "#photo_status",
-      "digress_in": "does_not_return",
-      "dialog_node": "node_5_1626379878536",
-      "previous_sibling": "node_1_1626381256714",
-      "disambiguation_opt_out": true
     },
     {
       "type": "standard",
@@ -851,7 +652,7 @@
           {
             "values": [
               {
-                "text": "$photoSpecs.result.photoSize photos printed on  $photoSpecs.result.photoFinish are  $photoSpecs.result.photoCost each. You can order online on our app, or by visiting our website at abc.com."
+                "text": "$photo_size photo printed in  $photo_finish finish are  \\$0.99 each. You can order online on our app, or by visiting our website at abc.com."
               }
             ],
             "response_type": "text",
@@ -860,44 +661,14 @@
         ]
       },
       "parent": "node_1_1626978097985",
-      "context": {
-        "photoSpecs": "$webhook_result_photoPrice.response"
-      },
-      "next_step": {
-        "behavior": "jump_to",
-        "selector": "body",
-        "dialog_node": "node_2_1626382060053"
-      },
-      "conditions": "$webhook_result_photoPrice",
-      "dialog_node": "node_5_1627058798127"
-    },
-    {
-      "type": "standard",
-      "title": "P2.1.1 Confirm order status or retry",
-      "parent": "node_1_1626379935108",
-      "actions": [
-        {
-          "name": "main_webhook",
-          "type": "webhook",
-          "parameters": {
-            "command": "status",
-            "orderNumber": "$photo_order_number"
-          },
-          "result_variable": "webhook_result"
-        }
-      ],
-      "metadata": {
-        "_customization": {
-          "mcr": true
-        }
-      },
+      "context": {},
       "next_step": {
         "behavior": "jump_to",
         "selector": "body",
         "dialog_node": "node_2_1626382060053"
       },
       "conditions": "true",
-      "dialog_node": "node_6_1626471692674"
+      "dialog_node": "node_5_1627058798127"
     },
     {
       "type": "frame",
@@ -958,32 +729,6 @@
     {
       "type": "response_condition",
       "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "Your order number is needed to get more information. Please locate your order number, and call back any time. You can also ask for a representative by saying, speak to a representative. "
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_1_1626379935108",
-      "context": {},
-      "next_step": {
-        "behavior": "jump_to",
-        "selector": "body",
-        "dialog_node": "node_2_1626382060053"
-      },
-      "conditions": "@yes_no:no",
-      "dialog_node": "response_1_1626541515595",
-      "previous_sibling": "node_6_1626471692674"
-    },
-    {
-      "type": "response_condition",
-      "output": {
         "text": {
           "values": [
             "Here let me check the price of those photos"
@@ -992,29 +737,10 @@
         }
       },
       "parent": "node_1_1626978097985",
+      "disabled": true,
       "conditions": "$webhook_result_photoPrice.response",
       "dialog_node": "response_2_1626978097988",
       "previous_sibling": "node_5_1627058798127"
-    },
-    {
-      "type": "response_condition",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "The callout generated this error: <? output.webhook_error.webhook_result_1 ?>."
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_6_1626471692674",
-      "conditions": "output.webhook_error",
-      "dialog_node": "response_3_1626890907550",
-      "previous_sibling": "response_8_1627009670147"
     },
     {
       "type": "response_condition",
@@ -1032,11 +758,7 @@
         ]
       },
       "parent": "node_1_1626978097985",
-      "next_step": {
-        "behavior": "jump_to",
-        "selector": "body",
-        "dialog_node": "node_1_1626379935108"
-      },
+      "disabled": true,
       "conditions": "anything_else",
       "dialog_node": "response_3_1626978097988",
       "previous_sibling": "response_2_1626978097988"
@@ -1057,6 +779,7 @@
         ]
       },
       "parent": "node_1_1626978097985",
+      "disabled": true,
       "conditions": "output.webhook_error",
       "dialog_node": "response_4_1626978097988",
       "previous_sibling": "response_3_1626978097988"
@@ -1108,26 +831,6 @@
           {
             "values": [
               {
-                "text": "It appears your pictures are still getting processed.  We estimate your order will be ready by 5:00PM CST."
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_6_1626471692674",
-      "conditions": "$webhook_result.response.result.orderDetails.orderStatus.toString().equals(\"not ready\")",
-      "dialog_node": "response_7_1627009405982",
-      "previous_sibling": "response_9_1627009314183"
-    },
-    {
-      "type": "response_condition",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
                 "text": "$photo_size photos printed on $photo_finish are 35 cents each. You can order photos online on our app, or by visiting our website at abc.com."
               }
             ],
@@ -1142,91 +845,12 @@
       "previous_sibling": "response_10_1626799875751"
     },
     {
-      "type": "response_condition",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "Sorry, <break time=\"200ms\" /> that order number is incorrect or unavailable."
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_6_1626471692674",
-      "context": {
-        "status": "invalidOrder",
-        "photo_order_number": null,
-        "photo_order_num_confirmed": null
-      },
-      "conditions": "$webhook_result.response.result.orderDetails.orderStatus.toString().equals(\"Invalid Order\")",
-      "dialog_node": "response_8_1627009670147",
-      "previous_sibling": "response_7_1627009405982"
-    },
-    {
-      "type": "response_condition",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "I can help you with the status of your photos."
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_5_1626379878536",
-      "context": {},
-      "dialog_node": "response_9_1626888955079"
-    },
-    {
-      "type": "response_condition",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "<sentence>We found your order, it is $webhook_result.response.result.orderDetails.orderStatus</sentence><sentence>You can pick it up at  <break time=\"200ms\" /> <prosody rate=\"slow\">$webhook_result.response.result.orderDetails.pickupLocation.address</prosody></sentence><break time=\"200ms\" /><sentence>Please bring your order number when you come to our store. Our store hours are <break time=\"200ms\" />Monday through Sunday <break time=\"200ms\" />9 AM to 5 PM.</sentence>"
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "multiline"
-          }
-        ]
-      },
-      "parent": "node_6_1626471692674",
-      "conditions": "$webhook_result.response.result.orderDetails.orderStatus.toString().equals(\"ready\")",
-      "dialog_node": "response_9_1627009314183"
-    },
-    {
       "type": "slot",
       "output": {},
       "parent": "node_8_1626193339121",
       "variable": "$photo_finish",
       "dialog_node": "slot_10_1626381647293",
       "previous_sibling": "slot_6_1626381368209"
-    },
-    {
-      "type": "slot",
-      "output": {},
-      "parent": "node_1_1626379935108",
-      "variable": "$photo_order_num_confirmed",
-      "dialog_node": "slot_3_1626542499414",
-      "previous_sibling": "slot_6_1626380078956"
-    },
-    {
-      "type": "slot",
-      "output": {},
-      "parent": "node_1_1626379935108",
-      "variable": "$photo_order_number",
-      "dialog_node": "slot_6_1626380078956",
-      "previous_sibling": "response_1_1626541515595"
     },
     {
       "type": "slot",
