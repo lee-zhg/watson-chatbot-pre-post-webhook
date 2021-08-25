@@ -589,17 +589,17 @@ The knowledge you have learned in this repo can can help you port an existing ch
 
    !["watson-assistant-multi-language-architecture"](docs/images/assistant10.png)
 
-1. Select the 3 dots on the `photo-shop` skill tile.
+1. Select the 3 dots on the `photo-shop-<your initial>` skill tile.
 
 1. Select `Duplicate`.
 
 1. Go back to `Skills` tab.
 
-1. Select the 3 dots on the `photo-shop copy` skill tile.
+1. Select the 3 dots on the `photo-shop-<your initial> copy` skill tile.
 
 1. Select `Rename`.
 
-1. Rename to `photo-shop-zh`.
+1. Rename to `photo-shop-<your initial>-zh`.
 
 1. Open the new skill.
 
@@ -622,7 +622,7 @@ The knowledge you have learned in this repo can can help you port an existing ch
 
 1. Select `Create assistant` button.
 
-1. Enter `photo-shop-assistant-zh` as the name.
+1. Enter `photo-shop-assistant-<your initial>-zh` as the name.
 
 1. Select ``Create assistant` button.
 
@@ -631,7 +631,7 @@ The knowledge you have learned in this repo can can help you port an existing ch
 
 ### Step 5.3 - Chat in Chinese
 
-As promised at the begining of the section, You can port an existing chatbot to another language in no time. You have done that for chatbot `photo-shop`.
+As promised at the begining of the section, You can port an existing chatbot to another language in no time. You have done that for chatbot `photo-shop-<your initial>`.
 
 To verify,
 
@@ -641,7 +641,7 @@ To verify,
 
 1. On the `Manage` tab of Watson Assistant window, click `Launch Watson Assistant` button.
 
-1. Open `photo-shop-assistant-zh` Assistant.
+1. Open `photo-shop-assistant-<your initial>-zh` Assistant.
 
 1. Select `Preview` at the top-right corner.
 
@@ -662,7 +662,7 @@ Now, let's how easily and quickly you can switch to Spanish.
 
 1. Navigate to `Skills` tag.
 
-1. Open skill `photo-shop-zh`.
+1. Open skill `photo-shop-<your initial>-zh`.
 
 1. Select the `Welcome` node to open its property window.
 
@@ -683,7 +683,7 @@ You just port your chatbot to Spanish from English. To verify,
 
 1. On the `Manage` tab of Watson Assistant window, click `Launch Watson Assistant` button.
 
-1. Open `photo-shop-assistant-zh` Assistant.
+1. Open `photo-shop-assistant-<your initial>-zh` Assistant.
 
 1. Select `Preview` at the top-right corner.
 
