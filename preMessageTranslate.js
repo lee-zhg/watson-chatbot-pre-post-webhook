@@ -139,9 +139,10 @@
          console.log("NO translation in PRE webhook======================2222222222222");
  
          if (lang_id == "none" || lang_id == "" || lang_id == null) {
-             params.payload.context.skills["main skill"].user_defined["language"] = "none"; 
-         }
- 
+            //params.payload.context.skills["main skill"].user_defined["language"] = "none"; 
+            _.set(params, 'payload.context.skills["main skill"].user_defined["language"]', "none");
+        }
+
          // const result = {
          //   body: params,
          // };
