@@ -518,6 +518,22 @@ The repo provides a sample dialog skill `data/skill-watson-photo.json` for quick
 
 If you created your dialog skill from scratch, you MUST add the same context variable to the first dialog node.
 
+1. Login to IBM Cloud.
+
+1. Locate and open the Watson Assistant instance.
+
+1. On the `Manage` tab of Watson Assistant window, click `Launch Watson Assistant` button.
+
+1. Open your dialog skill.
+
+1. Select `Dialog` in the left pane.
+
+1. Select the first dislog node.
+
+1. Add context variable `lang_id` if it does not exist.
+
+1. Set the value of `lang_id` to `null`.
+
 
 ### Step 5 - Verification
 
