@@ -143,8 +143,6 @@ In this section, you deploy your code as a service in IBM Cloud Function. Becaus
    ibmcloud  fn  action  list  multi-language-pkg-<your initial>
    ```
 
-Alternatively, you may also deploy the Cloud Function via IBM Cloud UI.
-
 
 ##### Step 2.2.2 - Modify Cloud Function
 
@@ -181,19 +179,6 @@ The cloud function calls Watson Translator APIs. It has to authenticate and poin
 
    !["watson-assistant-multi-language-architecture"](docs/images/translator01.png)
 
-1. Locate the following source code.
-
-    ```
-                     url:
-                         "<Watson Translator URL>/v3/translate?version=2018-05-01",
-                     auth: {
-                         username: "apikey",
-                         password: "<Watson Translator API >",
-                     },
-    ```
-
-1. Replace `<Watson Translator API key>` and `<Watson Translator URL>`.
-
 1. `Save`.
 
 
@@ -218,6 +203,8 @@ When you configure the Pre-webhook for your Watson Assistant instance, you need 
 1. Collect URL of `HTTP Method` under `Web Action`.
 
 1. Collect username and password if the cloud function resides in a `cloud foundry` name space. `non-IAM` authentication is used in this case.
+
+   > Note: this step is ONLY required if you use a `cloud foundry` name space. Otherwise, it can be skipped.
 
    a) Copy the CURL command at the bottom. It should look like
 
@@ -382,8 +369,6 @@ In this section, you deploy your code as a service in IBM Cloud Function. Becaus
    ibmcloud  fn  action  list  multi-language-pkg-<your initial>
    ```
 
-Alternatively, you may also deploy the Cloud Function via IBM Cloud UI.
-
 
 ##### Step 3.2.2 - Modify Cloud Function
 
@@ -434,6 +419,8 @@ When you configure the Post-webhook of Watson Assistant instance, you need coupl
 1. Collect URL of `HTTP Method`.
 
 1. Collect username and password when `non-IAM` authentication is used. This occurs for the `cloud foundry` name space.
+
+   > Note: this step is ONLY required when you use a `cloud foundry` name space.
 
    a) Copy the CURL command at the bottom. It should look like
 
@@ -523,7 +510,16 @@ To configure the Post-webhook of Watson Assistant instance,
    e) `Save`. The user name and password are encoded before they are stored.
 
 
-### Step 4 - Verification
+### Step 4 - Configure Watson Assistant Dialog Skill
+
+The repo provides a sample dialog skill `data/skill-watson-photo.json` for quickly showing an end-to-end flow. The sample dialog skill includes context variable `lang_id` which is used to provide the multi-languages support. Both Watson Assistant webhooks and dialog skill refer the context variable.
+
+!["watson-assistant-multi-language-context-variable"](docs/images/assistant19.png)
+
+If you created your dialog skill from scratch, you MUST add the same context variable to the first dialog node.
+
+
+### Step 5 - Verification
 
 With all the deployments and configurations that you have completed, you added the multi-langages capability to your chatbot.
 
@@ -566,14 +562,14 @@ This is an universal solution. You don't have to do special configuration in ord
    !["watson-assistant-multi-language-architecture"](docs/images/assistant18.png)
 
 
-### Step 5 - Quickly Port Chatbot Developed in one Language to a Different Lanaguage
+### Step 6 - Quickly Port Chatbot Developed in one Language to a Different Lanaguage
 
 Develops once and works everywhere! Have you heard the phrase before? When Java was introduced, it was a popular phrase. It's the main characteristics how Java differentiates itself. About 20 years later, when Kubernetes and RedHat OpenShift became main street for IT deployment, it got popular again.
 
 In fact, the multi-language capability introduced in the repo is another good example. But, `works everywhere` in this context means `works in any language`. You can develop your chatbot once, in English for example, and port to any supported language.
 
 
-#### Step 5.1 - Duplicate the Skill and Set the Language
+#### Step 6.1 - Duplicate the Skill and Set the Language
 
 There are use cases that you may have developed chatbot in English and you like to quickly port to another language. You can certainly rebuild it for a different language. But, it takes time and resource.
 
@@ -614,7 +610,7 @@ The knowledge you have learned in this repo can can help you port an existing ch
 1. Tab out to save the change.
 
 
-#### Step 5.2 - Configure Assistant
+#### Step 6.2 - Configure Assistant
 
 1. Navigate to `Assistant` tab.
 
@@ -629,7 +625,7 @@ The knowledge you have learned in this repo can can help you port an existing ch
 1. Configure the pre-webhook and post-webhook as you have done. The same source codes and cloud functions can be re-used.
 
 
-### Step 5.3 - Chat in Chinese
+### Step 6.3 - Chat in Chinese
 
 As promised at the begining of the section, You can port an existing chatbot to another language in no time. You have done that for chatbot `photo-shop-<your initial>`.
 
@@ -656,7 +652,7 @@ To verify,
    > Note: This is a perfect translation for the current context. You may have to evaluate your specific use cases to determine if this easy and universal multi-languages solution offers a valid solution to your use cases.
 
 
-### Step 5.4 - Quickly Port to Spanish
+### Step 6.4 - Quickly Port to Spanish
 
 Now, let's how easily and quickly you can switch to Spanish.
 
@@ -673,7 +669,7 @@ Now, let's how easily and quickly you can switch to Spanish.
 1. Tab out to save the change.
 
 
-### Step 5.5 - Chat in Spanish
+### Step 6.5 - Chat in Spanish
 
 You just port your chatbot to Spanish from English. To verify,
 
